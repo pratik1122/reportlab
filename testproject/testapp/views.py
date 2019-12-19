@@ -4,6 +4,8 @@ from django.shortcuts import render
 from testapp.models import Report
 from django.http import HttpResponse
 from django.views.generic import View
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 from django.http import HttpResponse
@@ -56,7 +58,7 @@ def index(request):
 
 
 
-#
+
 # def show(request):
 #     report = Report.objects.all()
 #     return render(request,'testapp/details1.html',{'report':report})
@@ -67,9 +69,10 @@ def index(request):
 #     return render(request,'pratikapp/forms.html')
 
 
+@receiver(post_save, sender= Report)
 
 class GeneratePdf(View):
-    def get(self, request, *args, **kwargs):
+    def get(self, request,sender,instance, *args, **kwargs):
         report = Report.objects.all()
 
 
