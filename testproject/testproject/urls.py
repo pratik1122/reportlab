@@ -20,7 +20,7 @@ from testapp import views
 
 
 urlpatterns = [
+
     path('admin/', admin.site.urls),
-    path('',views.input),
-    path('index/',views.index)
+    path('pdf',views.GeneratePdf.as_view())
 ]

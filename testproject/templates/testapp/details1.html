@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title> pratik pdf</title>
+</head>
+<body>
+
+{% if report %}
+<table>
+    <thead>
+
+       <th>NAME</th>
+       <th>PHONE</th>
+       <th>ADDRESS</th>
+    </thead>
+    {% for r in report%}
+       <tr>
+           <td> {{r.name}}</td>
+           <td> {{r.phone}}</td>
+           <td> {{r.address}}</td>
+
+       </tr>
+    {% endfor %}
+</table>
+{% endif %}
+
+
+
+
+</body>
+</html>

@@ -2,8 +2,14 @@ from django.shortcuts import render
 
 # Create your views here.
 from testapp.models import Report
+from django.http import HttpResponse
+from django.views.generic import View
 
 
+from django.http import HttpResponse
+from django.views.generic import View
+
+from testapp.utils import render_to_pdf
 import openpyxl
 
 def input(request):
@@ -28,7 +34,6 @@ def index(request):
         # worksheet = wb["Sheet1"]
         print(worksheet)
 
-
 #################################  reading excel data        #######################################
 
         excel_data = list()
@@ -47,15 +52,26 @@ def index(request):
             #     row_data.append(str(cell.value))
             # excel_data.append(row_data)
 
-
         return render(request,'testapp/forms.html')
 
 
 
+#
+# def show(request):
+#     report = Report.objects.all()
+#     return render(request,'testapp/details1.html',{'report':report})
+
+#
+# def show(request):
+#     # qs = Report.objects.all()
+#     return render(request,'pratikapp/forms.html')
 
 
 
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+        report = Report.objects.all()
 
 
-
-
+        pdf = render_to_pdf('pdf/details.html', {'report':report})
+        return HttpResponse(pdf, content_type='application/pdf')
