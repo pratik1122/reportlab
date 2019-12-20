@@ -7,12 +7,13 @@ from django.views.generic import View
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-
 from django.http import HttpResponse
 from django.views.generic import View
 
 from testapp.utils import render_to_pdf
 import openpyxl
+
+
 
 def input(request):
     return render(request,'testapp/forms.html')
@@ -36,6 +37,7 @@ def index(request):
         # worksheet = wb["Sheet1"]
         print(worksheet)
 
+
 #################################  reading excel data        #######################################
 
         excel_data = list()
@@ -57,8 +59,6 @@ def index(request):
         return render(request,'testapp/forms.html')
 
 
-
-
 # def show(request):
 #     report = Report.objects.all()
 #     return render(request,'testapp/details1.html',{'report':report})
@@ -67,6 +67,7 @@ def index(request):
 # def show(request):
 #     # qs = Report.objects.all()
 #     return render(request,'pratikapp/forms.html')
+
 
 
 @receiver(post_save, sender= Report)
@@ -78,3 +79,4 @@ class GeneratePdf(View):
 
         pdf = render_to_pdf('pdf/details.html', {'report':report})
         return HttpResponse(pdf, content_type='application/pdf')
+
