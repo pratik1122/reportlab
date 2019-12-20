@@ -9,7 +9,6 @@ from django.dispatch import receiver
 
 from django.http import HttpResponse
 from django.views.generic import View
-
 from testapp.utils import render_to_pdf
 import openpyxl
 
@@ -54,6 +53,9 @@ def index(request):
         report = Report.objects.all()
         pdf = render_to_pdf('pdf/details.html', {'report': report})
         return HttpResponse(pdf, content_type='application/pdf')
+
+
+
 
 
             #     row_data.append(str(cell.value))
