@@ -11,7 +11,7 @@
 <!--        <th> marks</th>-->
 
 <!--    </thead>-->
-<!--    {% for key, value in my_dict.items %}-->
+<!--    {% for key, value in my_.items %}-->
 <!--       <tr>-->
 <!--           <td> {{key}} {{value}}</td>-->
 
@@ -28,8 +28,21 @@
 
     </tr>
 {% endfor %}
-
 </table>
+
+
+
+
+<table>
+    {% for key, value in data1 %}
+    <tr>
+        <td> {{ key }} - {{value}}</td>
+
+    </tr>
+{% endfor %}
+</table>
+
+
 
 
 </body>

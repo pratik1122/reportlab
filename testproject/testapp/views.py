@@ -183,6 +183,9 @@ def index(request):
         my_dict[str(worksheet['K8'].value)] = int(worksheet['L8'].value)
 
         print(my_dict)
+        my_dict1 ={}
+        my_dict1[str(worksheet['K8'].value)] = int(worksheet['L8'].value)
+
         # # data = json.dumps(my_dict)
         # #
         # # print(data)
@@ -194,7 +197,9 @@ def index(request):
         # #
         # # return HttpResponse(p, content_type='application/pdf')
 
-        pdf = render_to_pdf('pdf/details.html',  {'data': sorted(my_dict.items())})
+
+
+        pdf = render_to_pdf('pdf/details.html',{'data': my_dict.items(),'data1':my_dict1.items()})
         return HttpResponse(pdf, content_type='application/pdf')
 
 
